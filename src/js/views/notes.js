@@ -2,7 +2,7 @@ class NotesUi {
     constructor() {
         this.tbody = document.querySelector('#tbody')
     }
-    // ! testing
+
     initNotesList(notes, handler) {
         this.renderNotes(notes)
         NotesUi.addHandler(handler)
@@ -60,7 +60,7 @@ class NotesUi {
             <td>${createdAt}</td>
             <td>${category}</td>
             <td>${content}</td>
-            <td>${!dates ? '' : dates}</td>
+            <td>${!dates ? '' : dates.join('')}</td>
             <td>
                 <i class="bi bi-pencil-fill me-2 icon" id="edit-icon" data-bs-toggle="modal" data-bs-target="#edit-note-modal"></i>
                 <i class="bi bi-archive-fill me-2 icon" id="archive-icon"></i>

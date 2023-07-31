@@ -25,7 +25,29 @@
         <main class="main pt-5 pb-5">
             <div class="container-xl">
 
-                <!-- * form -->
+                <button type="button" class="btn btn-secondary mb-3" id="show-archive-btn">
+                    Archived notes
+                    <i class="bi bi-caret-down-fill"></i>
+                </button>
+
+                <!-- * Notes table -->
+                <table class="table table_hidden text-justify" id="archive-table">
+                    <thead>
+                        <tr class="table-dark ">
+                            <th scope="col">Name</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Dates</th>
+                            <th scope="col">Controls</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archive-tbody">
+
+                    </tbody>
+                </table>
+
+                <!-- * Form -->
                 <form class="card p-3 mb-5 form form_hidden" id="create-note-form">
                     <fieldset>
                         <legend>Add note</legend>
@@ -36,9 +58,9 @@
                         <div class="mb-3">
                             <label for="note-category" class="form-label">Choose category</label>
                             <select id="note-category" class="form-select">
-                                <option>Task</option>
-                                <option>Random Thought</option>
-                                <option>Idea</option>
+                                <option>task</option>
+                                <option>random thought</option>
+                                <option>idea</option>
                             </select>
                         </div>
                         <div class="form-floating mb-3">
@@ -53,7 +75,7 @@
 
                 <div class="d-flex flex-column mb-5">
                     <!-- * Notes table -->
-                    <table class="table text-center">
+                    <table class="table text-justify">
                         <thead>
                             <tr class="table-dark ">
                                 <th scope="col">Name</th>
@@ -73,12 +95,11 @@
                         class="btn btn-primary create-note-btn">
                         CreateNote
                     </button>
-
                 </div>
 
 
-                <!-- * Stats table -->
-                <table class="table text-center">
+                <!-- * Stats (totals) table -->
+                <table class="table text-justify">
                     <thead>
                         <tr class="table-dark ">
                             <th scope="col">Note Category</th>
@@ -86,21 +107,30 @@
                             <th scope="col">Archived</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="totals-tbody">
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <th scope="row">
+                                <i class="bi bi-patch-check"></i>
+                                Task
+                            </th>
+                            <td id="active-tasks">0</td>
+                            <td id="archived-tasks">0</td>
                         </tr>
                         <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
+                            <th scope="row">
+                                <i class="bi bi-chat-left"></i>
+                                Random thought
+                            </th>
+                            <td id="active-thoughts">0</td>
+                            <td id="archived-thoughts">0</td>
                         </tr>
                         <tr>
-                            <th scope="row">3</th>
-                            <td>Larry the Bird</td>
-                            <td>@twitter</td>
+                            <th scope="row">
+                                <i class="bi bi-lightbulb"></i>
+                                Idea
+                            </th>
+                            <td id="active-ideas">0</td>
+                            <td id="archived-ideas">0</td>
                         </tr>
                     </tbody>
                 </table>
@@ -125,9 +155,9 @@
                                 <div class="mb-3">
                                     <label for="edit-note-category" class="form-label">Choose category</label>
                                     <select id="edit-note-category" class="form-select">
-                                        <option>Task</option>
-                                        <option>Random Thought</option>
-                                        <option>Idea</option>
+                                        <option>task</option>
+                                        <option>random thought</option>
+                                        <option>idea</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
