@@ -69,7 +69,6 @@
                         </tbody>
                     </table>
 
-                    <!-- * submit button -->
                     <button type="button" style="width: 150px; align-self: end;"
                         class="btn btn-primary create-note-btn">
                         CreateNote
@@ -107,7 +106,46 @@
                 </table>
 
             </div>
-        </main>
+
+            <!-- * Modal -->
+            <div class="modal fade" id="edit-note-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit note</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="modal-form">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="edit-note-name" class="col-form-label">Note name</label>
+                                    <input type="text" class="form-control" id="edit-note-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-note-category" class="form-label">Choose category</label>
+                                    <select id="edit-note-category" class="form-select">
+                                        <option>Task</option>
+                                        <option>Random Thought</option>
+                                        <option>Idea</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edit-note-content" class="col-form-label">Note content</label>
+                                    <textarea class="form-control" id="edit-note-content"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </main>
 
     </div>
 

@@ -7,6 +7,18 @@ export function rootReducer(state, action) {
 
     } else if (action.type === 'REMOVE_NOTE_FROM_ARCHIVE') {
 
+    } else if (action.type === 'EDIT_NOTE') {
+        const { name, category, content, id } = action.payload
+        const note = state.notes.find((note) => note.id === id)
+        const noteIndex = state.notes.indexOf(note)
+
+        note.name = name
+        note.category = category
+        note.content = content
+
+        const notesCopy = [...state.notes]
+        notesCopy[noteIndex] = note
+        state.notes = notesCopy
     }
 
     return state
