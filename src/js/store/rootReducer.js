@@ -31,28 +31,26 @@ export function rootReducer(state, action) {
         state.notes = notesCopy
 
     } else if (action.type === 'COUNT_TOTALS') {
-        // !debug
-        // console.log('calc totals');
+        const notes = [...state.notes, ...state.archivedNotes]
+        console.log(notes);
 
-        state.notes.forEach((note) => {
-            const { category, isArchived } = note;
+        const newTotals = {
+            task: { active: 0, archived: 0 },
+            randomThought: { active: 0, archived: 0 },
+            idea: { active: 0, archived: 0 }
+        }
 
-            if (!state.totals[category]) {
-                state.totals[category] = {
-                    active: 0,
-                    archived: 0
-                };
-            }
+        notes.forEach((note) => {
+            const { category, isArchived } = note
 
             if (isArchived) {
-                state.totals[category].archived++;
+                newTotals[category].archived++
             } else {
-                state.totals[category].active++;
+                newTotals[category].active++
             }
-        });
-        // ! debug
-        // console.log(state.totals);
+        })
 
+        state.totals = newTotals
     }
 
     return state

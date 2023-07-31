@@ -1,5 +1,6 @@
 import '../scss/styles.scss';
 
+import { v4 as uuidv4 } from "uuid"
 import formUi from './views/form';
 import Note from './note';
 import notesUi from './views/notes';
@@ -14,42 +15,54 @@ const initialState = {
         {
             name: 'Note 1',
             category: 'task',
-            content: 'Some content',
-            createdAt: 'May 15, 2023',
-            id: '894389',
-            isArchived: false
+            content: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a',
+            createdAt: 'September 10, 2022',
+            id: uuidv4(),
+            isArchived: false,
+            archiveNote() {
+                this.isArchived = !this.isArchived
+            }
         },
         {
             name: 'Note 2',
-            category: 'task',
-            content: 'Some content, 25/08/23',
+            category: 'idea',
+            content: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a, 25/08/23',
             createdAt: 'May 15, 2023',
             dates: ['25/08/23'],
-            id: '435353',
-            isArchived: false
+            id: uuidv4(),
+            isArchived: false,
+            archiveNote() {
+                this.isArchived = !this.isArchived
+            }
         },
         {
             name: 'Note 3',
-            category: 'task',
-            content: 'Some content 11.01.2023',
+            category: 'randomThought',
+            content: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a 11.01.2023',
             createdAt: 'May 15, 2023',
             dates: ['11.01.2023'],
-            id: '123232',
-            isArchived: false
+            id: uuidv4(),
+            isArchived: false,
+            archiveNote() {
+                this.isArchived = !this.isArchived
+            }
         },
     ],
     archivedNotes: [
         {
             name: 'Note 4',
-            category: 'task',
-            content: 'Some content',
-            createdAt: 'May 15, 2023',
-            id: '43983482',
-            isArchived: true
+            category: 'idea',
+            content: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a',
+            createdAt: 'June 20, 2023',
+            id: uuidv4(),
+            isArchived: true,
+            archiveNote() {
+                this.isArchived = !this.isArchived
+            }
         },
     ],
     totals: {
-        task: { active: 3, archived: 1 },
+        task: { active: 0, archived: 0 },
         randomThought: { active: 0, archived: 0 },
         idea: { active: 0, archived: 0 }
     }
@@ -64,10 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalForm = modalUi.modalForm
     const archive = archiveUi.archive
     let targetNoteId;
-
-    // ! debug
-    // console.log(totalsUi);
-    // console.log(showArchiveBtn);
 
     const onFormSubmit = (event) => {
         event.preventDefault()
@@ -87,15 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (targetIcon.getAttribute('id') === 'archive-icon') {
-            console.log('you click archive');
             store.dispatch({ type: 'ARCHIVE_NOTE', payload: targetNoteId })
-            console.log('you click remove from archive');
             store.dispatch({ type: 'COUNT_TOTALS' })
 
         }
 
         if (targetIcon.getAttribute('id') === 'delete-icon') {
-            console.log('you click bucket');
             store.dispatch({ type: 'DELETE_NOTE', payload: targetNoteId })
             store.dispatch({ type: 'COUNT_TOTALS' })
         }
@@ -107,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (targetIcon.getAttribute('id') === 'remove-form-archive-note') {
             store.dispatch({ type: 'REMOVE_NOTE_FROM_ARCHIVE', payload: targetNoteId })
+            store.dispatch({ type: 'COUNT_TOTALS' })
         }
     }
 
@@ -119,12 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
             id: targetNoteId
         }
 
-        console.log(payload);
-
         store.dispatch({ type: 'EDIT_NOTE', payload })
     }
 
-    // ! app initialization
+    // * app initialization
     notesUi.initNotesList(store.getState().notes, onNoteClickHandler)
     archiveUi.initArchive(store.getState().archivedNotes, onArchivedNoteClickHandler)
     store.dispatch({ type: 'COUNT_TOTALS' })
@@ -144,13 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     store.subscribe(() => {
         const { notes, totals, archivedNotes } = store.getState()
-        // ! debug
-        console.log(notes, 'notes');
-        console.log(archivedNotes, 'archived');
 
         notesUi.initNotesList(notes, onNoteClickHandler)
         archiveUi.initArchive(archivedNotes, onArchivedNoteClickHandler)
-        // totalsUi.renderTotals(totals)
+        totalsUi.renderTotals(totals)
     })
 
 

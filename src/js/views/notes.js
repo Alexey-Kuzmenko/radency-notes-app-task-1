@@ -58,7 +58,7 @@ class NotesUi {
         <tr id=${id} class="note-item" >
             <th scope="row">${name}</th>
             <td>${createdAt}</td>
-            <td>${category}</td>
+            <td>${category === 'randomThought' ? 'random thought' : category}</td>
             <td>${content}</td>
             <td>${!dates ? '' : dates.join('')}</td>
             <td>

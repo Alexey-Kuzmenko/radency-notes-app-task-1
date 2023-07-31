@@ -25,6 +25,32 @@
         <main class="main pt-5 pb-5">
             <div class="container-xl">
 
+                <!-- * Form -->
+                <form class="card p-3 mb-5 form form_hidden" id="create-note-form">
+                    <fieldset>
+                        <legend>Add note</legend>
+                        <div class="mb-3">
+                            <label for="ç" class="form-label">Note name</label>
+                            <input type="text" id="note-name" class="form-control" placeholder="Note name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="note-category" class="form-label">Choose category</label>
+                            <select id="note-category" class="form-select">
+                                <option value="task">task</option>
+                                <option value="randomThought">random thought</option>
+                                <option value="idea">idea</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea id="note-comment" class="form-control textarea" placeholder="Leave a comment here"
+                                style="height: 100px"></textarea>
+                            <label for="note-comment">Content</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </fieldset>
+                </form>
+
                 <button type="button" class="btn btn-secondary mb-3" id="show-archive-btn">
                     Archived notes
                     <i class="bi bi-caret-down-fill"></i>
@@ -46,32 +72,6 @@
 
                     </tbody>
                 </table>
-
-                <!-- * Form -->
-                <form class="card p-3 mb-5 form form_hidden" id="create-note-form">
-                    <fieldset>
-                        <legend>Add note</legend>
-                        <div class="mb-3">
-                            <label for="ç" class="form-label">Note name</label>
-                            <input type="text" id="note-name" class="form-control" placeholder="Note name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="note-category" class="form-label">Choose category</label>
-                            <select id="note-category" class="form-select">
-                                <option>task</option>
-                                <option>random thought</option>
-                                <option>idea</option>
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea id="note-comment" class="form-control textarea" placeholder="Leave a comment here"
-                                style="height: 100px"></textarea>
-                            <label for="note-comment">Content</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Create</button>
-                    </fieldset>
-                </form>
 
                 <div class="d-flex flex-column mb-5">
                     <!-- * Notes table -->
@@ -155,9 +155,9 @@
                                 <div class="mb-3">
                                     <label for="edit-note-category" class="form-label">Choose category</label>
                                     <select id="edit-note-category" class="form-select">
-                                        <option>task</option>
-                                        <option>random thought</option>
-                                        <option>idea</option>
+                                        <option value="task">task</option>
+                                        <option value="randomThought">random thought</option>
+                                        <option value="idea">idea</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
