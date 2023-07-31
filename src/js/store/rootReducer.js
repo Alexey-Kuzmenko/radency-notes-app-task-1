@@ -32,7 +32,6 @@ export function rootReducer(state, action) {
 
     } else if (action.type === 'COUNT_TOTALS') {
         const notes = [...state.notes, ...state.archivedNotes]
-        console.log(notes);
 
         const newTotals = {
             task: { active: 0, archived: 0 },
